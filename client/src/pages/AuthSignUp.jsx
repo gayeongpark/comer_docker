@@ -1,11 +1,12 @@
-import React from 'react';
-import Signup from '../components/Auth/Signup';
+import React from "react";
+import Signup from "../components/Auth/Signup";
+import AuthNav from "../components/Auth/AuthNav";
 
 export default function AuthSignUp() {
-    return (
-        <div>
-            <Signup/>
-        </div>
-    );
+  return (
+    <div>
+      <AuthNav />
+      <Signup />
+    </div>
+  );
 }
-

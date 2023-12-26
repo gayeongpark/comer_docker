@@ -1,0 +1,19 @@
+# Use an official Node.js runtime as the base image
+FROM node:16
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the client-side application code
+COPY package.json .
+
+RUN npm install
+# Install client-side dependencies
+
+# Copy the client-side application code
+COPY . .
+
+EXPOSE 3000
+
+# Specify the client-side startup command
+CMD ["npm", "start"]

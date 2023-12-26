@@ -1,0 +1,33 @@
+version: "3.8"
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodata:/data/db
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.client
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+    depends_on:
+      - server
+    env_file:
+      - ./client/.env
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile.server
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongodb
+    env_file:
+      - ./server/.env
+
+volumes:
+  mongodata:

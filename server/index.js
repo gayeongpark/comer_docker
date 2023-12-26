@@ -1,94 +1,67 @@
-const express = require('express');
+// Import required modules and libraries
+const express = require("express");
 const app = express();
-app.use(express.json());
+app.use(express.json()); // Use the JSON middleware to parse JSON data in requests
 
-const cookieParser = require('cookie-parser');
-app.use(cookieParser());
+const cookieParser = require("cookie-parser");
+app.use(cookieParser()); // Use the cookie-parser middleware to handle cookies
 
-const dotenv = require('dotenv');
-dotenv.config();
+const dotenv = require("dotenv");
+dotenv.config(); // Load environment variables from a .env file
 
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const MONGO_URI = process.env.MONGODB;
+// Connect to MongoDB using the provided URI from .env file and configure some settings
 mongoose
-  .set('strictQuery', false)
-  .connect(MONGO_URI)
+  .set("strictQuery", false)
+  .connect(MONGO_URI) // Connect to the MongoDB database
   .then((x) => {
     const dbName = x.connections[0].name;
     console.log(`Connected to MongoDB! Database name: "${dbName}"`);
   })
-  .catch((err) => {
-    console.error('Error connecting to mongo: ', err);
+  .catch((error) => {
+    console.error("Error connecting to mongo: ", error);
   });
 
-const cors = require('cors');
-app.use(
-  cors({
-    credentials: true,
-    origin: 'http://localhost:3000',
-  })
-);
+const cors = require("cors");
+const corsOptions = {
+  origin: "http://localhost:3000",
+  // "https://comer-experience-app.onrender.com", // this should match your client application's host
+  credentials: true, // this allows the server to accept cookies via CORS
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  allowedHeaders: "content-Type,Authorization",
+  exposedHeaders: ["Set-Cookie"],
+};
 
-const path = require('path');
-app.use(express.static(path.join(__dirname, '')));
+app.use(cors(corsOptions));
 
-const { v4: uuidv4 } = require('uuid');
+// const path = require("path");
+// app.use(express.static(path.join(__dirname, ""))); // Serve static files (e.g., images, CSS) from the specified directory
 
-const PORT = process.env.PORT || 8000;
+//  // Serve static files from the React app
+// app.use(express.static(path.join(__dirname, 'build')));
+
+// // The "catchall" handler: for any request that doesn't
+// // match one above, send back React's index.html file.
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+// });
+
+const usersRoutes = require("./routes/users.routes");
+app.use("/users", usersRoutes); // Use the "users" routes for URLs starting with "/users"
+
+const authRoutes = require("./routes/auth.routes");
+app.use("/auth", authRoutes); // Use the "auth" routes for URLs starting with "/auth"
+
+const experiencesRoutes = require("./routes/experiences.routes");
+app.use("/experiences", experiencesRoutes); // Use the "experiences" routes for URLs starting with "/experiences"
+
+const commentsRoutes = require("./routes/comments.routes");
+app.use("/comments", commentsRoutes); // Use the "comments" routes for URLs starting with "/comments"
+
+const PORT = process.env.PORT || 8000; // Set the server's port based on an environment variable or use 8000 as a default
 
 app.listen(PORT, () => {
-  console.log(`Server listening on the port http://localhost:${PORT}`);
+  console.log(`Server listening on the port ${PORT}`);
+  // Start the server and log a message to the console when it's listening
 });
-
-const usersRoutes = require('./routes/users.routes');
-app.use('/users', usersRoutes);
-
-const authRoutes = require('./routes/auth.routes');
-app.use('/auth', authRoutes);
-
-const experiencesRoutes = require('./routes/experiences.routes');
-app.use('/experiences', experiencesRoutes);
-
-const commentsRoutes = require('./routes/comments.routes');
-app.use('/comments', commentsRoutes);
-
-// app.use((err, req, res, next) => {
-//   const errorStatus = err.status || 500;
-//   const errorMessge = err.message || 'Something went wrong';
-//   return res
-//     .status(errorStatus)
-//     .json({
-//       success: false,
-//       status: errorStatus,
-//       message: errorMessge,
-//       stack: err.stack,
-//     });
-// });
-
-// app.get('/getNewProductList', (req, res, next) => {
-//   let data = [
-//     {
-//       id: uuidv4(),
-//       title: 'Vegan breakfast on a boat',
-//       country: 'Australia',
-//       city: 'Sydney',
-//       price: 200,
-//       currency: '$',
-//       image_url:
-//         'https://townsquare.media/site/959/files/2021/09/attachment-GettyImages-1224773422.jpg?w=980&q=75',
-//       people: 2,
-//     },
-//     {
-//       id: uuidv4(),
-//       title: 'Exploring Korean foods with me',
-//       country: 'South Korea',
-//       city: 'Seoul',
-//       price: 100,
-//       currency: '$',
-//       image_url:
-//         'https://davidsbeenhere.com/wp-content/uploads/2019/10/25_Korean_Dishes_You_Must_Eat_in_South_Korea3.jpg',
-//       people: 5,
-//     },
-//   ];
-//   res.json(data);
-// });

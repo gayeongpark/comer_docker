@@ -1,70 +1,84 @@
-# Getting Started with Create React App
+# Comer - Connecting Cultures Through Food
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+"Comer," a web application, is GAYEONG's innovative project for the Web Development Basics with JavaScript course at QUEST program, CODE University of Applied Sciences. The platform bridges cultures through the love of food, enabling users to share and book unique culinary experiences.
 
-## Available Scripts
+**Deployed URL**: [Comer Experience Web](https://comer-experience-app.onrender.com)
 
-In the project directory, you can run:
+## Project Setup
 
-### `npm start`
+### Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Node.js
+- npm (Node Package Manager)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Installation
 
-### `npm test`
+Clone the repository and install dependencies:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+git clone [https://github.com/gayeongpark/comer_client.git]
+cd comer_client
+npm install
+```
 
-### `npm run build`
+### Running the Application
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Development Mode
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+npm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This command starts the app in development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser. The page will reload if you make edits, and you will see any lint errors in the console.
 
-### `npm run eject`
+#### Running Tests
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+npm test
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Launches the test runner in interactive watch mode. For more information, visit [running tests](https://facebook.github.io/create-react-app/docs/running-tests).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+#### Building for Production
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+npm run build
+```
 
-## Learn More
+Builds the app for production to the `build` folder, optimizing the build for performance. The build is minified, and filenames include hashes.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Ejecting Configuration (Advanced)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+npm run eject
+```
 
-### Code Splitting
+**Note**: This is irreversible. Ejecting exposes configuration files and dependencies for customization.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Project Overview
 
-### Analyzing the Bundle Size
+### Key Features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- User-friendly interface for sharing and booking food experiences.
+- Integrated Mapbox for location-based experiences.
+- Secure backend with JWT authentication and MongoDB.
 
-### Making a Progressive Web App
+### Technologies
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- **Frontend**: React.js, TailwindCSS
+- **Backend**: Node.js, Express.js, Mongoose, MongoDB
+- **Libraries**: Mapbox, AWS SDK
 
-### Advanced Configuration
+### Learning Outcomes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- Advanced full-stack development skills.
+- Implementation of JWT for secure routing.
+- Complex database management with MongoDB.
+- User-centric design and functionality.
 
-### Deployment
+### Planned Enhancements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Messaging and search features using socket IO.
+- Social login/signup options using Firebase.
+- Enhanced security measures.
+- Expanded platform functionality and reach.
